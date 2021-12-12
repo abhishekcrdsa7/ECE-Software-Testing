@@ -1,0 +1,16 @@
+Unable to find the collection accessed by com.google.common.base.Splitter$2$1@1812e661
+Unable to find the collection accessed by com.google.common.collect.Iterators$7@52fd39d
+Missing write events on 447971913675830782
+Missing write events on 447971913675830781
+Missing write events on 447971913675830782
+java.lang.IllegalArgumentException
+	at com.runtimeverification.rvpredict.smt.LockSetEngine.hasCommonLock(LockSetEngine.java:60)
+	at com.runtimeverification.rvpredict.smt.MaximalCausalModel.failPecanCheck(MaximalCausalModel.java:400)
+	at java.util.ArrayList.removeIf(ArrayList.java:1415)
+	at com.runtimeverification.rvpredict.smt.MaximalCausalModel.lambda$checkRaceSuspects$42(MaximalCausalModel.java:426)
+	at java.util.HashMap$Values.forEach(HashMap.java:981)
+	at com.runtimeverification.rvpredict.smt.MaximalCausalModel.checkRaceSuspects(MaximalCausalModel.java:425)
+	at com.runtimeverification.rvpredict.engine.main.MaximalRaceDetector.run(MaximalRaceDetector.java:108)
+	at com.runtimeverification.rvpredict.log.VolatileLoggingEngine.runRaceDetection(VolatileLoggingEngine.java:245)
+	at com.runtimeverification.rvpredict.log.VolatileLoggingEngine.finishLogging(VolatileLoggingEngine.java:146)
+	at com.runtimeverification.rvpredict.engine.main.RVPredict$1.run(RVPredict.java:140)

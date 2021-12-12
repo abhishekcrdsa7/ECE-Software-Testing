@@ -1,0 +1,104 @@
+Data race on field org.apache.hadoop.hbase.procedure2.util.ByteSlot.size:
+    Write in thread 14
+      > at org.apache.hadoop.hbase.procedure2.util.ByteSlot.reset(ByteSlot.java:60)
+        at org.apache.hadoop.hbase.procedure2.store.wal.WALProcedureStore.releaseSlot(WALProcedureStore.java:663)
+        at org.apache.hadoop.hbase.procedure2.store.wal.WALProcedureStore.insert(WALProcedureStore.java:517)
+        at org.apache.hadoop.hbase.procedure2.store.wal.TestWALProcedureStore.testWalCleanerUpdates(TestWALProcedureStore.java:208)
+        at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+        at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+        at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+        at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+        at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+        at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
+        at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+        at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+        at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+        at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+        at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+        at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+        at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+        at org.junit.internal.runners.statements.FailOnTimeout$CallableStatement.call(FailOnTimeout.java:298)
+    Thread 14 created by thread 1
+        at org.junit.internal.runners.statements.FailOnTimeout.evaluate(FailOnTimeout.java:125)
+
+    Read in thread 18 holding lock WriteLock@1462825584
+      > at org.apache.hadoop.hbase.procedure2.util.ByteSlot.size(ByteSlot.java:72)
+        at org.apache.hadoop.hbase.procedure2.store.wal.WALProcedureStore.syncSlots(WALProcedureStore.java:859)
+        at org.apache.hadoop.hbase.procedure2.store.wal.WALProcedureStore.syncLoop(WALProcedureStore.java:820)
+        - locked WriteLock@1462825584 at java.util.concurrent.locks.ReentrantLock(ReentrantLock.java:n/a)
+        at org.apache.hadoop.hbase.procedure2.store.wal.WALProcedureStore.access$000(WALProcedureStore.java:74)
+        at org.apache.hadoop.hbase.procedure2.store.wal.WALProcedureStore$1.run(WALProcedureStore.java:278)
+    Thread 18 created by thread 14
+        at org.apache.hadoop.hbase.procedure2.store.wal.WALProcedureStore.start(WALProcedureStore.java:287)
+
+
+Data race on field org.apache.hadoop.hbase.procedure2.util.ByteSlot.size:
+    Write in thread 14
+      > at org.apache.hadoop.hbase.procedure2.util.ByteSlot.reset(ByteSlot.java:60)
+        at org.apache.hadoop.hbase.procedure2.store.wal.WALProcedureStore.releaseSlot(WALProcedureStore.java:663)
+        at org.apache.hadoop.hbase.procedure2.store.wal.WALProcedureStore.insert(WALProcedureStore.java:517)
+        at org.apache.hadoop.hbase.procedure2.store.wal.TestWALProcedureStore.testWalCleanerUpdates(TestWALProcedureStore.java:208)
+        at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+        at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+        at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+        at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+        at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+        at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
+        at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+        at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+        at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+        at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+        at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+        at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+        at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+        at org.junit.internal.runners.statements.FailOnTimeout$CallableStatement.call(FailOnTimeout.java:298)
+    Thread 14 created by thread 1
+        at org.junit.internal.runners.statements.FailOnTimeout.evaluate(FailOnTimeout.java:125)
+
+    Read in thread 18 holding lock WriteLock@1462825584
+      > at org.apache.hadoop.hbase.procedure2.util.ByteSlot.writeTo(ByteSlot.java:102)
+        at org.apache.hadoop.hbase.procedure2.store.wal.WALProcedureStore.syncSlots(WALProcedureStore.java:886)
+        at org.apache.hadoop.hbase.procedure2.store.wal.WALProcedureStore.syncSlots(WALProcedureStore.java:859)
+        at org.apache.hadoop.hbase.procedure2.store.wal.WALProcedureStore.syncLoop(WALProcedureStore.java:820)
+        - locked WriteLock@1462825584 at java.util.concurrent.locks.ReentrantLock(ReentrantLock.java:n/a)
+        at org.apache.hadoop.hbase.procedure2.store.wal.WALProcedureStore.access$000(WALProcedureStore.java:74)
+        at org.apache.hadoop.hbase.procedure2.store.wal.WALProcedureStore$1.run(WALProcedureStore.java:278)
+    Thread 18 created by thread 14
+        at org.apache.hadoop.hbase.procedure2.store.wal.WALProcedureStore.start(WALProcedureStore.java:287)
+
+
+Data race on field org.apache.hadoop.hbase.procedure2.util.ByteSlot.head:
+    Write in thread 14
+      > at org.apache.hadoop.hbase.procedure2.util.ByteSlot.reset(ByteSlot.java:59)
+        at org.apache.hadoop.hbase.procedure2.store.wal.WALProcedureStore.releaseSlot(WALProcedureStore.java:663)
+        at org.apache.hadoop.hbase.procedure2.store.wal.WALProcedureStore.insert(WALProcedureStore.java:517)
+        at org.apache.hadoop.hbase.procedure2.store.wal.TestWALProcedureStore.testWalCleanerUpdates(TestWALProcedureStore.java:208)
+        at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+        at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+        at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+        at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+        at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+        at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
+        at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+        at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+        at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+        at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+        at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+        at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+        at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+        at org.junit.internal.runners.statements.FailOnTimeout$CallableStatement.call(FailOnTimeout.java:298)
+    Thread 14 created by thread 1
+        at org.junit.internal.runners.statements.FailOnTimeout.evaluate(FailOnTimeout.java:125)
+
+    Read in thread 18 holding lock WriteLock@1462825584
+      > at org.apache.hadoop.hbase.procedure2.util.ByteSlot.writeTo(ByteSlot.java:98)
+        at org.apache.hadoop.hbase.procedure2.store.wal.WALProcedureStore.syncSlots(WALProcedureStore.java:886)
+        at org.apache.hadoop.hbase.procedure2.store.wal.WALProcedureStore.syncSlots(WALProcedureStore.java:859)
+        at org.apache.hadoop.hbase.procedure2.store.wal.WALProcedureStore.syncLoop(WALProcedureStore.java:820)
+        - locked WriteLock@1462825584 at java.util.concurrent.locks.ReentrantLock(ReentrantLock.java:n/a)
+        at org.apache.hadoop.hbase.procedure2.store.wal.WALProcedureStore.access$000(WALProcedureStore.java:74)
+        at org.apache.hadoop.hbase.procedure2.store.wal.WALProcedureStore$1.run(WALProcedureStore.java:278)
+    Thread 18 created by thread 14
+        at org.apache.hadoop.hbase.procedure2.store.wal.WALProcedureStore.start(WALProcedureStore.java:287)
+
+

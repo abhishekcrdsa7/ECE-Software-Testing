@@ -1,0 +1,7 @@
+Unable to find the collection accessed by org.apache.mina.transport.socket.nio.NioDatagramAcceptor$DatagramChannelIterator@7446fdae
+Missing write events on 8692750066047254204
+Unable to find the collection accessed by org.apache.mina.transport.socket.nio.NioProcessor$IoSessionIterator@2e4358e4
+Unable to find the collection accessed by org.apache.mina.transport.socket.nio.NioSocketAcceptor$ServerSocketChannelIterator@529276aa
+Unable to find the collection accessed by org.apache.mina.transport.socket.nio.NioSocketConnector$SocketChannelIterator@45ba317a
+Missing write events on 9004566998134292085
+Missing write events on 2313560962365390453

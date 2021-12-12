@@ -1,0 +1,17 @@
+Unable to find the collection accessed by com.google.common.base.Splitter$2$1@e07fc6e
+Unable to find the collection accessed by com.google.common.collect.Iterators$7@11f3debd
+Missing write events on 4960817364389067766
+Missing write events on 4960817364389067766
+java.lang.IllegalArgumentException: No such block!
+	at com.runtimeverification.rvpredict.trace.Trace.getMemoryAccessBlock(Trace.java:247)
+	at com.runtimeverification.rvpredict.smt.MaximalCausalModel.getRaceAssertion(MaximalCausalModel.java:410)
+	at java.util.HashMap.computeIfAbsent(HashMap.java:1127)
+	at com.runtimeverification.rvpredict.smt.MaximalCausalModel.lambda$null$41(MaximalCausalModel.java:427)
+	at java.util.ArrayList.forEach(ArrayList.java:1259)
+	at com.runtimeverification.rvpredict.smt.MaximalCausalModel.lambda$checkRaceSuspects$42(MaximalCausalModel.java:427)
+	at java.util.HashMap$Values.forEach(HashMap.java:981)
+	at com.runtimeverification.rvpredict.smt.MaximalCausalModel.checkRaceSuspects(MaximalCausalModel.java:425)
+	at com.runtimeverification.rvpredict.engine.main.MaximalRaceDetector.run(MaximalRaceDetector.java:108)
+	at com.runtimeverification.rvpredict.log.VolatileLoggingEngine.runRaceDetection(VolatileLoggingEngine.java:245)
+	at com.runtimeverification.rvpredict.log.VolatileLoggingEngine.finishLogging(VolatileLoggingEngine.java:146)
+	at com.runtimeverification.rvpredict.engine.main.RVPredict$1.run(RVPredict.java:140)

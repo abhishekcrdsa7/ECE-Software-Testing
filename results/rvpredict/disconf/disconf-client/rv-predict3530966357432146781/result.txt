@@ -1,0 +1,32 @@
+Data race on field java.util.HashSet.$state:
+    Read in thread 18 holding lock Monitor@1152180696
+      > at wiremock.org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:599)
+        - locked Monitor@1152180696 at wiremock.org.mortbay.thread.QueuedThreadPool$PoolThread.run(QueuedThreadPool.java:585)
+    Thread 18 created by thread 1
+        at wiremock.org.mortbay.thread.QueuedThreadPool.newThread(QueuedThreadPool.java:462)
+
+    Write in thread 1 holding locks Monitor@2096154368, Monitor@380047243, Monitor@1490315083
+      > at wiremock.org.mortbay.thread.QueuedThreadPool.newThread(QueuedThreadPool.java:460)
+        - locked Monitor@1490315083 at wiremock.org.mortbay.thread.QueuedThreadPool.newThread(QueuedThreadPool.java:455)
+        at wiremock.org.mortbay.thread.QueuedThreadPool.doStart(QueuedThreadPool.java:403)
+        at wiremock.org.mortbay.component.AbstractLifeCycle.start(AbstractLifeCycle.java:50)
+        - locked Monitor@380047243 at wiremock.org.mortbay.component.AbstractLifeCycle.start(AbstractLifeCycle.java:43)
+        at wiremock.org.mortbay.jetty.Server.doStart(Server.java:218)
+        at wiremock.org.mortbay.component.AbstractLifeCycle.start(AbstractLifeCycle.java:50)
+        - locked Monitor@2096154368 at wiremock.org.mortbay.component.AbstractLifeCycle.start(AbstractLifeCycle.java:43)
+        at com.github.tomakehurst.wiremock.WireMockServer.start(WireMockServer.java:186)
+        at com.github.tomakehurst.wiremock.junit.WireMockClassRule$1.evaluate(WireMockClassRule.java:75)
+        at org.junit.rules.RunRules.evaluate(RunRules.java:18)
+        at org.junit.runners.ParentRunner.run(ParentRunner.java:300)
+        at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:163)
+        at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:365)
+        at org.apache.maven.surefire.junit4.JUnit4Provider.executeWithRerun(JUnit4Provider.java:273)
+        at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:238)
+        at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:159)
+        at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:384)
+        at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:345)
+        at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:126)
+        at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:418)
+    Thread 1 is the main thread
+
+

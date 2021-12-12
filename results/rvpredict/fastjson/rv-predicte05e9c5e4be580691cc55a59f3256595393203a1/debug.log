@@ -1,0 +1,4 @@
+Unable to resolve field org/slf4j/impl/StaticLoggerBinder.REQUESTED_API_VERSION in class org/slf4j/LoggerFactory
+Unable to find the collection accessed by java.util.LinkedHashMap$LinkedKeyIterator@47b17e48
+Unable to resolve field org/apache/xml/resolver/CatalogManager.debug in class org/apache/cxf/catalog/OASISCatalogManager
+Unable to find the collection accessed by org.apache.cxf.phase.PhaseInterceptorChain$PhaseInterceptorIterator@4d7c61a

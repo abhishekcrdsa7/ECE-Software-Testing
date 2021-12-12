@@ -1,0 +1,5 @@
+Unable to find the collection accessed by org.hibernate.internal.util.collections.JoinedIterator@6a9287b1
+Unable to find the collection accessed by org.hibernate.internal.util.collections.EmptyIterator@99a65d3
+Unable to find the collection accessed by org.hibernate.search.cfg.impl.SearchConfigurationFromHibernateCore$ClassIterator@cb7051e
+Unable to find the collection accessed by org.apache.lucene.util.WeakIdentityMap$1@790b0a4b
+Unable to find the collection accessed by org.hibernate.hql.internal.ast.util.ASTIterator@459dcf31

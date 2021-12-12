@@ -1,0 +1,44 @@
+Data race on field org.eclipse.jetty.util.thread.strategy.EatWhatYouKill._state:
+    Write in thread 15 holding locks Monitor@841807005, Monitor@1939093884, Monitor@664451519
+      > at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.<init>(EatWhatYouKill.java:79)
+        at org.eclipse.jetty.io.ManagedSelector.<init>(ManagedSelector.java:80)
+        at org.eclipse.jetty.io.SelectorManager.newSelector(SelectorManager.java:273)
+        at org.eclipse.jetty.io.SelectorManager.doStart(SelectorManager.java:258)
+        at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68)
+        - locked Monitor@664451519 at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:61)
+        at org.eclipse.jetty.util.component.ContainerLifeCycle.start(ContainerLifeCycle.java:138)
+        at org.eclipse.jetty.util.component.ContainerLifeCycle.doStart(ContainerLifeCycle.java:108)
+        at org.eclipse.jetty.server.AbstractConnector.doStart(AbstractConnector.java:282)
+        at org.eclipse.jetty.server.AbstractNetworkConnector.doStart(AbstractNetworkConnector.java:81)
+        at org.eclipse.jetty.server.ServerConnector.doStart(ServerConnector.java:235)
+        at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68)
+        - locked Monitor@1939093884 at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:61)
+        at org.eclipse.jetty.server.Server.doStart(Server.java:395)
+        at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:68)
+        - locked Monitor@841807005 at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:61)
+        at com.github.restdriver.clientdriver.ClientDriver.createAndStartJetty(ClientDriver.java:84)
+        at com.github.restdriver.clientdriver.ClientDriver.<init>(ClientDriver.java:67)
+        at com.github.restdriver.clientdriver.ClientDriverFactory.createClientDriver(ClientDriverFactory.java:35)
+        at com.github.restdriver.clientdriver.ClientDriverRule.<init>(ClientDriverRule.java:41)
+        at org.zalando.riptide.backup.BackupRequestPluginTest.<init>(BackupRequestPluginTest.java:34)
+        at org.junit.runners.BlockJUnit4ClassRunner.createTest(BlockJUnit4ClassRunner.java:217)
+        at org.junit.runners.BlockJUnit4ClassRunner$1.runReflectiveCall(BlockJUnit4ClassRunner.java:266)
+        at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+        at org.junit.runners.BlockJUnit4ClassRunner.methodBlock(BlockJUnit4ClassRunner.java:263)
+        at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+        at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+        at org.apache.maven.surefire.junitcore.pc.Scheduler$1.run(Scheduler.java:410)
+    Thread 15 created by thread 14
+        at java.util.concurrent.ThreadPoolExecutor.addWorker(ThreadPoolExecutor.java:1028)
+
+    Read in thread 16 holding lock Monitor@1227157246
+      > at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.tryProduce(EatWhatYouKill.java:145)
+        - locked Monitor@1227157246 at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.tryProduce(EatWhatYouKill.java:140)
+        at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.produce(EatWhatYouKill.java:132)
+        at org.eclipse.jetty.io.ManagedSelector$$Lambda$211.run(Unknown:n/a)
+        at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:765)
+        at org.eclipse.jetty.util.thread.QueuedThreadPool$2.run(QueuedThreadPool.java:683)
+    Thread 16 created by thread 15
+        at org.eclipse.jetty.util.thread.QueuedThreadPool.startThreads(QueuedThreadPool.java:543)
+
+

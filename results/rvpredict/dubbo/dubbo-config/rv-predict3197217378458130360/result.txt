@@ -1,0 +1,70 @@
+Data race on field io.netty.util.internal.shaded.org.jctools.queues.MpscUnboundedArrayQueue.$state:
+    Read in thread 17
+      > at io.netty.util.concurrent.SingleThreadEventExecutor.offerTask(SingleThreadEventExecutor.java:330)
+        at io.netty.util.concurrent.SingleThreadEventExecutor.addTask(SingleThreadEventExecutor.java:321)
+        at io.netty.util.concurrent.SingleThreadEventExecutor.execute(SingleThreadEventExecutor.java:765)
+        at io.netty.util.concurrent.DefaultPromise.safeExecute(DefaultPromise.java:764)
+        at io.netty.util.concurrent.DefaultPromise.notifyListeners(DefaultPromise.java:432)
+        at io.netty.util.concurrent.DefaultPromise.addListener(DefaultPromise.java:162)
+        at io.netty.channel.DefaultChannelPromise.addListener(DefaultChannelPromise.java:95)
+        at io.netty.bootstrap.ServerBootstrap$ServerBootstrapAcceptor.channelRead(ServerBootstrap.java:255)
+        at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362)
+        at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348)
+        at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:340)
+        at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1434)
+        at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:362)
+        at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:348)
+        at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:965)
+        at io.netty.channel.nio.AbstractNioMessageChannel$NioMessageUnsafe.read(AbstractNioMessageChannel.java:93)
+        at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:647)
+        at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:582)
+        at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:499)
+        at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:461)
+        at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:884)
+        at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+    Thread 17 created by thread 1
+        at io.netty.util.concurrent.ThreadPerTaskExecutor.execute(ThreadPerTaskExecutor.java:33)
+
+    Write in thread 21
+      > at io.netty.util.concurrent.SingleThreadEventExecutor.pollTaskFrom(SingleThreadEventExecutor.java:209)
+        at io.netty.util.concurrent.SingleThreadEventExecutor.pollTask(SingleThreadEventExecutor.java:204)
+        at io.netty.channel.nio.NioEventLoop.pollTask(NioEventLoop.java:525)
+        at io.netty.util.concurrent.SingleThreadEventExecutor.runAllTasks(SingleThreadEventExecutor.java:394)
+        at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:465)
+        at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:884)
+        at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+    Thread 21 created by thread 17
+        at io.netty.util.concurrent.ThreadPerTaskExecutor.execute(ThreadPerTaskExecutor.java:33)
+
+
+Data race on field io.netty.util.internal.shaded.org.jctools.queues.MpscUnboundedArrayQueue.$state:
+    Read in thread 21
+      > at io.netty.util.concurrent.SingleThreadEventExecutor.hasTasks(SingleThreadEventExecutor.java:300)
+        at io.netty.channel.SingleThreadEventLoop.hasTasks(SingleThreadEventLoop.java:143)
+        at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:407)
+        at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:884)
+        at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+    Thread 21 created by thread 17
+        at io.netty.util.concurrent.ThreadPerTaskExecutor.execute(ThreadPerTaskExecutor.java:33)
+
+    Write in thread 27
+      > at io.netty.util.concurrent.SingleThreadEventExecutor.offerTask(SingleThreadEventExecutor.java:330)
+        at io.netty.util.concurrent.SingleThreadEventExecutor.addTask(SingleThreadEventExecutor.java:321)
+        at io.netty.util.concurrent.SingleThreadEventExecutor.execute(SingleThreadEventExecutor.java:765)
+        at io.netty.channel.AbstractChannelHandlerContext.safeExecute(AbstractChannelHandlerContext.java:1007)
+        at io.netty.channel.AbstractChannelHandlerContext.write(AbstractChannelHandlerContext.java:825)
+        at io.netty.channel.AbstractChannelHandlerContext.writeAndFlush(AbstractChannelHandlerContext.java:794)
+        at io.netty.channel.AbstractChannelHandlerContext.writeAndFlush(AbstractChannelHandlerContext.java:831)
+        at io.netty.channel.DefaultChannelPipeline.writeAndFlush(DefaultChannelPipeline.java:1071)
+        at io.netty.channel.AbstractChannel.writeAndFlush(AbstractChannel.java:300)
+        at org.apache.dubbo.remoting.transport.netty4.NettyChannel.send(NettyChannel.java:101)
+        at org.apache.dubbo.remoting.exchange.support.header.HeaderExchangeChannel.send(HeaderExchangeChannel.java:89)
+        at org.apache.dubbo.remoting.exchange.support.header.HeaderExchangeChannel.send(HeaderExchangeChannel.java:78)
+        at org.apache.dubbo.remoting.exchange.support.header.HeaderExchangeHandler.handleRequest(HeaderExchangeHandler.java:103)
+        at org.apache.dubbo.remoting.exchange.support.header.HeaderExchangeHandler.received(HeaderExchangeHandler.java:196)
+        at org.apache.dubbo.remoting.transport.DecodeHandler.received(DecodeHandler.java:51)
+        at org.apache.dubbo.remoting.transport.dispatcher.ChannelEventRunnable.run(ChannelEventRunnable.java:57)
+    Thread 27 created by thread 21
+        at java.util.concurrent.ThreadPoolExecutor.addWorker(ThreadPoolExecutor.java:1028)
+
+

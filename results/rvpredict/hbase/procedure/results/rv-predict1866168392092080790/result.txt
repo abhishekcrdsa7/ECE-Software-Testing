@@ -1,0 +1,223 @@
+Data race on field org.apache.hadoop.hbase.procedure2.InlineChore.timeout:
+    Read in thread 16
+      > at org.apache.hadoop.hbase.procedure2.InlineChore.getTimeout(InlineChore.java:40)
+        at org.apache.hadoop.hbase.procedure2.util.DelayedUtil.takeWithoutInterrupt(DelayedUtil.java:78)
+        at org.apache.hadoop.hbase.procedure2.TimeoutExecutorThread.run(TimeoutExecutorThread.java:56)
+    Thread 16 created by thread 14
+        at org.apache.hadoop.hbase.procedure2.ProcedureExecutor.startWorkers(ProcedureExecutor.java:688)
+
+    Write in thread 14
+      > at org.apache.hadoop.hbase.procedure2.InlineChore.refreshTimeout(InlineChore.java:35)
+        at org.apache.hadoop.hbase.procedure2.TimeoutExecutorThread.add(TimeoutExecutorThread.java:76)
+        at org.apache.hadoop.hbase.procedure2.ProcedureExecutor.startWorkers(ProcedureExecutor.java:694)
+        at org.apache.hadoop.hbase.procedure2.ProcedureTestingUtility.initAndStartWorkers(ProcedureTestingUtility.java:77)
+        at org.apache.hadoop.hbase.procedure2.TestProcedureSuspended.setUp(TestProcedureSuspended.java:65)
+        at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+        at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+        at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+        at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:24)
+        at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
+        at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+        at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+        at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+        at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+        at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+        at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+        at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+        at org.junit.internal.runners.statements.FailOnTimeout$CallableStatement.call(FailOnTimeout.java:298)
+    Thread 14 created by thread 1
+        at org.junit.internal.runners.statements.FailOnTimeout.evaluate(FailOnTimeout.java:125)
+
+
+Data race on field java.util.ArrayList.$state:
+    Write in thread 17
+      > at org.apache.hadoop.hbase.procedure2.TestProcedureSuspended$TestLockProcedure.execute(TestProcedureSuspended.java:200)
+        at org.apache.hadoop.hbase.procedure2.Procedure.doExecute(Procedure.java:940)
+        at org.apache.hadoop.hbase.procedure2.ProcedureExecutor.execProcedure(ProcedureExecutor.java:1703)
+        at org.apache.hadoop.hbase.procedure2.ProcedureExecutor.executeProcedure(ProcedureExecutor.java:1489)
+        at org.apache.hadoop.hbase.procedure2.ProcedureExecutor.access$900(ProcedureExecutor.java:76)
+        at org.apache.hadoop.hbase.procedure2.ProcedureExecutor$WorkerThread.run(ProcedureExecutor.java:2010)
+    Thread 17 created by thread 14
+        at org.apache.hadoop.hbase.procedure2.ProcedureExecutor.startWorkers(ProcedureExecutor.java:690)
+
+    Read in thread 14
+      > at org.apache.hadoop.hbase.procedure2.TestProcedureSuspended.waitAndAssertTimestamp(TestProcedureSuspended.java:162)
+        at org.apache.hadoop.hbase.procedure2.TestProcedureSuspended.testSuspendWhileHoldingLocks(TestProcedureSuspended.java:88)
+        at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+        at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+        at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+        at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+        at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+        at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
+        at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+        at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+        at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+        at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+        at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+        at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+        at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+        at org.junit.internal.runners.statements.FailOnTimeout$CallableStatement.call(FailOnTimeout.java:298)
+    Thread 14 created by thread 1
+        at org.junit.internal.runners.statements.FailOnTimeout.evaluate(FailOnTimeout.java:125)
+
+
+Data race on field java.util.ArrayList.$state:
+    Write in thread 17
+      > at org.apache.hadoop.hbase.procedure2.TestProcedureSuspended$TestLockProcedure.execute(TestProcedureSuspended.java:200)
+        at org.apache.hadoop.hbase.procedure2.Procedure.doExecute(Procedure.java:940)
+        at org.apache.hadoop.hbase.procedure2.ProcedureExecutor.execProcedure(ProcedureExecutor.java:1703)
+        at org.apache.hadoop.hbase.procedure2.ProcedureExecutor.executeProcedure(ProcedureExecutor.java:1489)
+        at org.apache.hadoop.hbase.procedure2.ProcedureExecutor.access$900(ProcedureExecutor.java:76)
+        at org.apache.hadoop.hbase.procedure2.ProcedureExecutor$WorkerThread.run(ProcedureExecutor.java:2010)
+    Thread 17 created by thread 14
+        at org.apache.hadoop.hbase.procedure2.ProcedureExecutor.startWorkers(ProcedureExecutor.java:690)
+
+    Read in thread 14
+      > at org.apache.hadoop.hbase.procedure2.TestProcedureSuspended.waitAndAssertTimestamp(TestProcedureSuspended.java:158)
+        at org.apache.hadoop.hbase.procedure2.ProcedureExecutor.submitProcedure(ProcedureExecutor.java:1127)
+        at org.apache.hadoop.hbase.procedure2.ProcedureExecutor.submitProcedure(ProcedureExecutor.java:972)
+        at org.apache.hadoop.hbase.procedure2.TestProcedureSuspended.testSuspendWhileHoldingLocks(TestProcedureSuspended.java:85)
+        at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+        at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+        at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+        at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+        at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+        at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
+        at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+        at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+        at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+        at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+        at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+        at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+        at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+        at org.junit.internal.runners.statements.FailOnTimeout$CallableStatement.call(FailOnTimeout.java:298)
+    Thread 14 created by thread 1
+        at org.junit.internal.runners.statements.FailOnTimeout.evaluate(FailOnTimeout.java:125)
+
+
+Data race on field java.util.ArrayList.$state:
+    Write in thread 17
+      > at org.apache.hadoop.hbase.procedure2.TestProcedureSuspended$TestLockProcedure.execute(TestProcedureSuspended.java:200)
+        at org.apache.hadoop.hbase.procedure2.Procedure.doExecute(Procedure.java:940)
+        at org.apache.hadoop.hbase.procedure2.ProcedureExecutor.execProcedure(ProcedureExecutor.java:1703)
+        at org.apache.hadoop.hbase.procedure2.ProcedureExecutor.executeProcedure(ProcedureExecutor.java:1489)
+        at org.apache.hadoop.hbase.procedure2.ProcedureExecutor.access$900(ProcedureExecutor.java:76)
+        at org.apache.hadoop.hbase.procedure2.ProcedureExecutor$WorkerThread.run(ProcedureExecutor.java:2010)
+    Thread 17 created by thread 14
+        at org.apache.hadoop.hbase.procedure2.ProcedureExecutor.startWorkers(ProcedureExecutor.java:690)
+
+    Read in thread 14
+      > at org.apache.hadoop.hbase.procedure2.TestProcedureSuspended.waitAndAssertTimestamp(TestProcedureSuspended.java:160)
+        at org.apache.hadoop.hbase.procedure2.TestProcedureSuspended.testSuspendWhileHoldingLocks(TestProcedureSuspended.java:88)
+        at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+        at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+        at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+        at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+        at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+        at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
+        at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+        at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+        at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+        at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+        at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+        at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+        at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+        at org.junit.internal.runners.statements.FailOnTimeout$CallableStatement.call(FailOnTimeout.java:298)
+    Thread 14 created by thread 1
+        at org.junit.internal.runners.statements.FailOnTimeout.evaluate(FailOnTimeout.java:125)
+
+
+Data race on field java.util.ArrayList.$state:
+    Write in thread 19
+      > at org.apache.hadoop.hbase.procedure2.TestProcedureSuspended$TestLockProcedure.execute(TestProcedureSuspended.java:200)
+        at org.apache.hadoop.hbase.procedure2.Procedure.doExecute(Procedure.java:940)
+        at org.apache.hadoop.hbase.procedure2.ProcedureExecutor.execProcedure(ProcedureExecutor.java:1703)
+        at org.apache.hadoop.hbase.procedure2.ProcedureExecutor.executeProcedure(ProcedureExecutor.java:1489)
+        at org.apache.hadoop.hbase.procedure2.ProcedureExecutor.access$900(ProcedureExecutor.java:76)
+        at org.apache.hadoop.hbase.procedure2.ProcedureExecutor$WorkerThread.run(ProcedureExecutor.java:2010)
+    Thread 19 created by thread 14
+        at org.apache.hadoop.hbase.procedure2.ProcedureExecutor.startWorkers(ProcedureExecutor.java:690)
+
+    Read in thread 14
+      > at org.apache.hadoop.hbase.procedure2.TestProcedureSuspended.testYieldWhileHoldingLocks(TestProcedureSuspended.java:139)
+        at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+        at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+        at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+        at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+        at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+        at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
+        at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+        at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+        at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+        at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+        at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+        at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+        at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+        at org.junit.internal.runners.statements.FailOnTimeout$CallableStatement.call(FailOnTimeout.java:298)
+    Thread 14 created by thread 1
+        at org.junit.internal.runners.statements.FailOnTimeout.evaluate(FailOnTimeout.java:125)
+
+
+Data race on field java.util.ArrayList.$state:
+    Write in thread 19
+      > at org.apache.hadoop.hbase.procedure2.TestProcedureSuspended$TestLockProcedure.execute(TestProcedureSuspended.java:200)
+        at org.apache.hadoop.hbase.procedure2.Procedure.doExecute(Procedure.java:940)
+        at org.apache.hadoop.hbase.procedure2.ProcedureExecutor.execProcedure(ProcedureExecutor.java:1703)
+        at org.apache.hadoop.hbase.procedure2.ProcedureExecutor.executeProcedure(ProcedureExecutor.java:1489)
+        at org.apache.hadoop.hbase.procedure2.ProcedureExecutor.access$900(ProcedureExecutor.java:76)
+        at org.apache.hadoop.hbase.procedure2.ProcedureExecutor$WorkerThread.run(ProcedureExecutor.java:2010)
+    Thread 19 created by thread 14
+        at org.apache.hadoop.hbase.procedure2.ProcedureExecutor.startWorkers(ProcedureExecutor.java:690)
+
+    Read in thread 14
+      > at org.apache.hadoop.hbase.procedure2.TestProcedureSuspended.testYieldWhileHoldingLocks(TestProcedureSuspended.java:149)
+        at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+        at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+        at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+        at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+        at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+        at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
+        at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+        at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+        at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+        at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+        at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+        at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+        at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+        at org.junit.internal.runners.statements.FailOnTimeout$CallableStatement.call(FailOnTimeout.java:298)
+    Thread 14 created by thread 1
+        at org.junit.internal.runners.statements.FailOnTimeout.evaluate(FailOnTimeout.java:125)
+
+
+Data race on field java.util.ArrayList.$state:
+    Write in thread 19
+      > at org.apache.hadoop.hbase.procedure2.TestProcedureSuspended$TestLockProcedure.execute(TestProcedureSuspended.java:200)
+        at org.apache.hadoop.hbase.procedure2.Procedure.doExecute(Procedure.java:940)
+        at org.apache.hadoop.hbase.procedure2.ProcedureExecutor.execProcedure(ProcedureExecutor.java:1703)
+        at org.apache.hadoop.hbase.procedure2.ProcedureExecutor.executeProcedure(ProcedureExecutor.java:1489)
+        at org.apache.hadoop.hbase.procedure2.ProcedureExecutor.access$900(ProcedureExecutor.java:76)
+        at org.apache.hadoop.hbase.procedure2.ProcedureExecutor$WorkerThread.run(ProcedureExecutor.java:2010)
+    Thread 19 created by thread 14
+        at org.apache.hadoop.hbase.procedure2.ProcedureExecutor.startWorkers(ProcedureExecutor.java:690)
+
+    Read in thread 14
+      > at org.apache.hadoop.hbase.procedure2.TestProcedureSuspended.testYieldWhileHoldingLocks(TestProcedureSuspended.java:147)
+        at org.apache.hadoop.hbase.procedure2.TestProcedureSuspended.testYieldWhileHoldingLocks(TestProcedureSuspended.java:144)
+        at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+        at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+        at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+        at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+        at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+        at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
+        at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+        at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+        at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+        at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+        at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+        at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+        at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+        at org.junit.internal.runners.statements.FailOnTimeout$CallableStatement.call(FailOnTimeout.java:298)
+    Thread 14 created by thread 1
+        at org.junit.internal.runners.statements.FailOnTimeout.evaluate(FailOnTimeout.java:125)
+
+
